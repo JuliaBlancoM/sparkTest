@@ -57,3 +57,6 @@ build/
 
 ### TMP FOLDER ###
 /tmp
+
+### SPARK WAREHOUSE ###
+/spark-warehouse

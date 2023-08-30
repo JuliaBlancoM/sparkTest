@@ -29,20 +29,28 @@ object ejercicio4 {
 
     categories4Df.show(30, truncate = false)
 
-    val q4Df = categories4Df
+    val soccerDf = categories4Df
       .where(col("category_name").equalTo("Soccer"))
 
-    q4Df.show()
+    soccerDf.show()
+  //convertir el dataframe a una única columna con pipe delimiter, para poder guardarlo en formato texto.
+    val q4Df = soccerDf.select(
+      concat(
+        col("category_id"), lit('|'),
+        col("category_department_id"), lit('|'),
+        col("category_name"))
+        .as("columna_unica"))
 
-    //guardarlo en formato texto con pipe delimiter
+    q4Df.show(truncate = false)
+
+    //guardarlo en formato texto
+
       q4Df.write
       .mode("overwrite")
-      .option("header", "true")
       .option("delimiter", "|")
-      .csv("src/main/dataset/q4/solution")
+      .text("src/main/dataset/q4/solution")
 
     val comprobacion4 = spark.read.format("csv")
-      .option("header", "true")
       .option("delimiter", "|")
       .load("src/main/dataset/q4/solution")
     comprobacion4.show()

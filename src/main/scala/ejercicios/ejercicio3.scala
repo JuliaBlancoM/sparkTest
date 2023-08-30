@@ -61,6 +61,7 @@ object ejercicio3 {
 
     q3Df.write.format("parquet")
       .mode("overwrite")
+      .option("header", "true")
       .option("compression", "gzip")
       .save("src/main/dataset/q3/solution")
 

@@ -29,6 +29,7 @@ object ejercicio1 {
     //guardo en el formato especificado
     q1Df.write.format("parquet")
       .mode("overwrite")
+      .option("header", "true")
       .option("compression", "gzip")
       .save("src/main/dataset/q1/solution")
 

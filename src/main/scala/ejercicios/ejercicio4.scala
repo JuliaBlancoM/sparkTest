@@ -4,7 +4,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 
-object ejercicio2 {
+object ejercicio4 {
 
   def main(args: Array[String]): Unit = {
     val spark = SparkSession
@@ -22,28 +22,30 @@ object ejercicio2 {
       StructField("category_name", StringType, false)))
 
     //crear el dataframe leyendo los archivos de tipo texto (hay que leerlo como csv para añadir las opciones especificadas)
-    val categoriesDf = spark.read
+    val categories4Df = spark.read
       .option("delimiter", ",")
       .schema(schema)
       .csv("src/main/resources/retail_db/categories")
 
-    categoriesDf.show(30, truncate = false)
+    categories4Df.show(30, truncate = false)
 
-    val q2Df = categoriesDf
-      .select("category_id", "category_name")
-      .orderBy(col("category_id").desc)
+    val q4Df = categories4Df
+      .where(col("category_name").equalTo("Soccer"))
 
-    q2Df.show(25, truncate = false)
+    q4Df.show()
 
-    //guardarlo como un solo archivo (se puede usar coalesce(1) o repartition(1) pero coalesce usa menos recursos)
-    q2Df.coalesce(1)
-      .write
+    //guardarlo en formato texto con pipe delimiter
+      q4Df.write
       .mode("overwrite")
       .option("header", "true")
-      .option("delimiter", ":")
-      .csv("src/main/dataset/q2/solution")
+      .option("delimiter", "|")
+      .csv("src/main/dataset/q4/solution")
 
-
+    val comprobacion4 = spark.read.format("csv")
+      .option("header", "true")
+      .option("delimiter", "|")
+      .load("src/main/dataset/q4/solution")
+    comprobacion4.show()
 
 
   }

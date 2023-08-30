@@ -36,8 +36,8 @@ object ejercicio4 {
   //convertir el dataframe a una única columna con pipe delimiter, para poder guardarlo en formato texto.
     val q4Df = soccerDf.select(
       concat(
-        col("category_id"), lit('|'),
-        col("category_department_id"), lit('|'),
+        col("category_id"), lit("|"),
+        col("category_department_id"), lit("|"),
         col("category_name"))
         .as("columna_unica"))
 

@@ -37,19 +37,6 @@ object ejercicio3 {
       .csv("src/main/resources/retail_db/customers-tab-delimited")
     customersDf.show(20, truncate = false)
 
-    //Se puede hacer infiriendo esquema y añadiendo luego los nombres de las columnas
-    /*
-    val customers1Df = spark.read
-      .option("delimiter", "\t")
-      .option("inferSchema", "true")
-      .csv("src/main/resources/retail_db/customers-tab-delimited")
-    customers1Df.show(20, truncate = false)
-    customers1Df.printSchema()
-
-    val customersDf = customers1Df.toDF("customer_id", "customer_fname", "customer_lname", "customer_email", "customer_password", "customer_street", "customer_city", "customer_state", "customer_zipcode")
-    customersDf.show()
-    */
-
   //Get total number of customers in each state whose first name starts with A and total customer count is greater than 50
 
     val q3Df = customersDf

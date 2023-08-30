@@ -45,7 +45,6 @@ object ejercicio2 {
 
 
 
-
   }
 
 }

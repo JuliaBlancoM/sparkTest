@@ -11,6 +11,7 @@ object ejercicio3 {
       .builder
       .appName("LibroSpark")
       .master("local[2]")
+      .enableHiveSupport()
       .getOrCreate()
 
     //leer el dataframe para hacernos una idea
@@ -65,6 +66,14 @@ object ejercicio3 {
 
     val comprobacion = spark.read.format("parquet").load("src/main/dataset/q3/solution")
     comprobacion.show()
+
+    //Guardar el DataFrame en Hive Metastore (no lo dejo comentado porque creo que funciona):
+    spark.sql("CREATE DATABASE IF NOT EXISTS customers")
+    q3Df.write.mode("overwrite").saveAsTable("customers.q3table")
+    //Esto crea una managed table. El nombre de la tabla debe ser "nombrebasededatos.nombretabla (por eso creo la base
+    //de datos)
+    //Al estar en local, se crea una metastore de Hive que se llama metastore_db y una warehouse location llamada spark-warehouse
+    // dentro del directorio del repositorio
 
   }
 

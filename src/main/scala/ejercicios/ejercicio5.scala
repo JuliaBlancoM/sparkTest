@@ -8,7 +8,7 @@ object ejercicio5 {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession
       .builder
-      .appName("LibroSpark")
+      .appName("pruebaSpark")
       .master("local[2]")
       .getOrCreate()
 

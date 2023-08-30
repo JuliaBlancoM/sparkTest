@@ -48,3 +48,12 @@ build/
 
 ### RESOURCE ###
 /src/main/resources
+
+### METASTORE_DB ###
+/metastore_db
+
+### LOGS ###
+*.log
+
+### TMP FOLDER ###
+/tmp

@@ -1,4 +1,3 @@
 # sparkTest
-This repository shows my project cleaning and exploring data from the open-source dataset Metacritic video-games data.  
-You can download the dataset [here](https://www.kaggle.com/datasets/brunovr/metacritic-videogames-data?resource=download)  
-For this project I used Spark (version 3.3.2) with Scala (version 2.21.0).
+This repository shows the code I developed for a Spark test I took during my Internship.
+It was originally coded in Scala and translated to PySpark Spark version 3.3.2 Scala version 2.13.11 Python version 3.10

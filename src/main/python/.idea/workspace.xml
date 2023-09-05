@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af88700f-47d9-4bba-8046-a6ad03f8f0f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ejercicio2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ejercicio3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dataset/q1/solution/.part-00000-a43c4b8a-bc7f-4b84-bafc-569b7dc21b1e-c000.gz.parquet.crc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dataset/q1/solution/part-00000-a43c4b8a-bc7f-4b84-bafc-569b7dc21b1e-c000.gz.parquet" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dataset/q2/solution/.part-00000-d9552c60-8b66-4cb8-991a-7f94b725743d-c000.csv.crc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dataset/q2/solution/part-00000-d9552c60-8b66-4cb8-991a-7f94b725743d-c000.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="af88700f-47d9-4bba-8046-a6ad03f8f0f0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

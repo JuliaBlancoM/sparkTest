@@ -16,18 +16,18 @@ object ejercicio2 {
     //leer el dataframe para hacernos una idea
     val df = spark.read.text("src/main/resources/retail_db/categories")
     df.show(10, truncate = false)
-    //definir el esquema manualmente
-    val schema = StructType(Array(StructField("category_id", IntegerType, false),
-      StructField("category_department_id", IntegerType, false),
-      StructField("category_name", StringType, false)))
 
-    //crear el dataframe leyendo los archivos de tipo texto (hay que leerlo como csv para añadir las opciones especificadas)
-    val categoriesDf = spark.read
+    //crear el dataframe leyendo los archivos de tipo texto.
+    val primerDf = spark.read
       .option("delimiter", ",")
-      .schema(schema)
+      .option("infereSchema", "true")
       .csv("src/main/resources/retail_db/categories")
 
-    categoriesDf.show(30, truncate = false)
+    primerDf.show(30, truncate = false)
+    primerDf.printSchema()
+
+    val categoriesDf = primerDf.toDF("category_id", "category_department_id", "category_name")
+    categoriesDf.show(13, truncate = false)
 
     val q2Df = categoriesDf
       .select("category_id", "category_name")

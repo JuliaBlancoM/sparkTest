@@ -16,39 +16,28 @@ object ejercicio4 {
     //leer el dataframe para hacernos una idea
     val df = spark.read.text("src/main/resources/retail_db/categories")
     df.show(10, truncate = false)
-    //definir el esquema manualmente
-    val schema = StructType(Array(StructField("category_id", IntegerType, false),
-      StructField("category_department_id", IntegerType, false),
-      StructField("category_name", StringType, false)))
 
     //crear el dataframe leyendo los archivos de tipo texto (hay que leerlo como csv para añadir las opciones especificadas)
-    val categories4Df = spark.read
+    val inicialDf = spark.read
       .option("delimiter", ",")
-      .schema(schema)
+      .option("inferSchema", "true")
       .csv("src/main/resources/retail_db/categories")
 
-    categories4Df.show(30, truncate = false)
+    inicialDf.show(30, truncate = false)
 
-    val soccerDf = categories4Df
+    val categories4Df = inicialDf.toDF("category_id", "category_department_id", "category_name")
+
+    val q4Df = categories4Df
       .where(col("category_name").equalTo("Soccer"))
 
-    soccerDf.show()
-  //convertir el dataframe a una única columna con pipe delimiter, para poder guardarlo en formato texto.
-    val q4Df = soccerDf.select(
-      concat(
-        col("category_id"), lit("|"),
-        col("category_department_id"), lit("|"),
-        col("category_name"))
-        .as("columna_unica"))
-
-    q4Df.show(truncate = false)
+    q4Df.show()
 
     //guardarlo en formato texto
 
       q4Df.write
       .mode("overwrite")
       .option("delimiter", "|")
-      .text("src/main/dataset/q4/solution")
+      .csv("src/main/dataset/q4/solution")
 
     val comprobacion4 = spark.read.format("csv")
       .option("delimiter", "|")

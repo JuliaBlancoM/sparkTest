@@ -17,18 +17,11 @@ object ejercicio6 {
     customersDf.show(10, truncate = false)
     customersDf.printSchema()
 
-    val customerNameDf = customersDf.select(col("customer_id"),
+    val q6Df = customersDf.select(col("customer_id"),
       concat(
         substring(col("customer_fname"), 1, 1),
         lit(" "),
         col("customer_lname")).as("customer_name"))
-
-    customerNameDf.show(15)
-
-    val q6Df = customerNameDf.select(
-      concat(
-        col("customer_id"), lit("\t"),
-        col("customer_name")).as("columna_unica"))
 
     q6Df.show(5, truncate = false)
 
@@ -36,7 +29,7 @@ object ejercicio6 {
       .mode("overwrite")
       .option("delimiter", "\t")
       .option("compression", "bzip2")
-      .text("src/main/dataset/q6/solution")
+      .csv("src/main/dataset/q6/solution")
 
     val comprobacion6 = spark.read.format("csv")
       .option("delimiter", "\t")

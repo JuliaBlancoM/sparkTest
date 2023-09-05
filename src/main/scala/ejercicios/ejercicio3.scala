@@ -18,24 +18,27 @@ object ejercicio3 {
     val df = spark.read.text("src/main/resources/retail_db/customers-tab-delimited")
     df.show(10, truncate = false)
 
-    //definir el esquema manualmente
-    val schema = StructType(Array(StructField("customer_id", IntegerType, false),
-      StructField("customer_fname", StringType, false),
-      StructField("customer_lname", StringType, false),
-      StructField("customer_email", StringType, false),
-      StructField("customer_password", StringType, false),
-      StructField("customer_street", StringType, false),
-      StructField("customer_city", StringType, false),
-      StructField("customer_state", StringType, false),
-      StructField("customer_zipcode", StringType, false)))
-
     //crear el dataframe leyendo los archivos de tipo texto (hay que leerlo como csv para añadir las opciones especificadas)
 
-    val customersDf = spark.read
+    val inicialDf = spark.read
       .option("delimiter", "\t")
-      .schema(schema)
+      .option("inferSchema", "true")
       .csv("src/main/resources/retail_db/customers-tab-delimited")
-    customersDf.show(20, truncate = false)
+    inicialDf.show(20, truncate = false)
+
+    val customersDf = inicialDf.toDF(
+      "customer_id",
+      "customer_fname",
+      "customer_lname",
+      "customer_email",
+      "customer_password",
+      "customer_street",
+      "customer_city",
+      "customer_state",
+      "customer_zipcode"
+    )
+    customersDf.show(22, truncate = false)
+    customersDf.printSchema()
 
   //Get total number of customers in each state whose first name starts with A and total customer count is greater than 50
 
